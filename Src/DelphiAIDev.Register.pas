@@ -10,10 +10,11 @@ uses
   DelphiAIDev.PopupMenuProjects,
   DelphiAIDev.IDE.OTAIDENotifier;
 
-procedure Register;
+{$IFNDEF IGNORE_CODE_ENABLED}procedure Register;{$ENDIF}
 
 implementation
 
+{$IFNDEF IGNORE_CODE_ENABLED}
 procedure Register;
 begin
   DelphiAIDev.Chat.View.RegisterSelf;
@@ -23,5 +24,6 @@ begin
   DelphiAIDev.PopupMenuProjects.RegisterSelf;
   DelphiAIDev.IDE.OTAIDENotifier.RegisterSelf;
 end;
+{$ENDIF}
 
 end.

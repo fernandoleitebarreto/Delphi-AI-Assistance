@@ -15,7 +15,6 @@ uses
   Vcl.Dialogs,
   System.ImageList,
   Vcl.ImgList,
-  DockForm,
   Vcl.StdCtrls,
   Vcl.ExtCtrls,
   Vcl.ComCtrls,
@@ -39,10 +38,10 @@ uses
   C4D.Conn,
   DelphiAIDev.Utils.DBGrids,
   DelphiAIDev.Projects.Model,
-  DelphiAIDev.DB.References.View;
+  DelphiAIDev.DB.References.View, DelphiAIDev.View.Main;
 
 type
-  TDelphiAIDevDBChatView = class(TDockableForm)
+  TDelphiAIDevDBChatView = class(TForm)
     ImageList1: TImageList;
     pMenuMemoReturn: TPopupMenu;
     Cut1: TMenuItem;
@@ -187,9 +186,11 @@ type
 var
   DelphiAIDevDBChatView: TDelphiAIDevDBChatView;
 
+{$IFNDEF IGNORE_CODE_ENABLED}
 procedure RegisterSelf;
 procedure Unregister;
 procedure DelphiAIDevDBChatViewShowDockableForm;
+{$ENDIF}
 
 implementation
 
@@ -207,6 +208,7 @@ const
   CodeOnly_ImageIndex_OFF = 2;
   CodeOnly_ImageIndex_ON = 3;
 
+{$IFNDEF IGNORE_CODE_ENABLED}
 procedure RegisterSelf;
 begin
   if not Assigned(DelphiAIDevDBChatView) then
@@ -230,14 +232,16 @@ begin
   ShowDockableForm(DelphiAIDevDBChatView);
   FocusWindow(DelphiAIDevDBChatView);
 end;
+{$ENDIF}
 
 constructor TDelphiAIDevDBChatView.Create(AOwner: TComponent);
 begin
   inherited;
+{$IFNDEF IGNORE_CODE_ENABLED}
   DeskSection := Self.Name;
   AutoSave := True;
   SaveStateNecessary := True;
-
+{$ENDIF}
   FAI := TDelphiAIDevAIFacade.Create;
   FSettings := TDelphiAIDevSettings.GetInstance;
   FProcessResponse := TDelphiAIDevChatProcessResponse.Create(mmReturn);
@@ -939,6 +943,6 @@ end;
 initialization
 
 finalization
-  Unregister;
+{$IFNDEF IGNORE_CODE_ENABLED}  Unregister; {$ENDIF}
 
 end.

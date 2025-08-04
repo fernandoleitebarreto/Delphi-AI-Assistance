@@ -24,6 +24,7 @@ uses
   Vcl.Menus,
   Vcl.Buttons,
   Clipbrd,
+  DelphiAIDev.View.Main,
   DelphiAIDev.Types,
   DelphiAIDev.Consts,
   DelphiAIDev.AI.Facade,
@@ -33,7 +34,7 @@ uses
   DelphiAIDev.Chat.ProcessResponse;
 
 type
-  TDelphiAIDevChatView = class(TDockableForm)
+  TDelphiAIDevChatView = class(TDelphiAIDevMainView)
     ImageList1: TImageList;
     pMenuMemoReturn: TPopupMenu;
     Cut1: TMenuItem;
@@ -139,9 +140,11 @@ type
 var
   DelphiAIDevChatView: TDelphiAIDevChatView;
 
+{$IFNDEF IGNORE_CODE_ENABLED}
 procedure RegisterSelf;
 procedure Unregister;
 procedure DelphiAIDevChatViewShowDockableForm;
+{$ENDIF}
 
 implementation
 
@@ -158,6 +161,7 @@ const
   CodeOnly_ImageIndex_OFF = 2;
   CodeOnly_ImageIndex_ON = 3;
 
+{$IFNDEF IGNORE_CODE_ENABLED}
 procedure RegisterSelf;
 begin
   if not Assigned(DelphiAIDevChatView) then
@@ -176,18 +180,22 @@ begin
   FreeAndNil(DelphiAIDevChatView);
 end;
 
+
 procedure DelphiAIDevChatViewShowDockableForm;
 begin
   ShowDockableForm(DelphiAIDevChatView);
   FocusWindow(DelphiAIDevChatView);
 end;
+{$ENDIF}
 
 constructor TDelphiAIDevChatView.Create(AOwner: TComponent);
 begin
   inherited;
+{$IFNDEF IGNORE_CODE_ENABLED}
   DeskSection := Self.Name;
   AutoSave := True;
   SaveStateNecessary := True;
+{$ENDIF}
 
   FAI := TDelphiAIDevAIFacade.Create;
   FSettings := TDelphiAIDevSettings.GetInstance;
@@ -673,6 +681,7 @@ end;
 initialization
 
 finalization
+{$IFNDEF IGNORE_CODE_ENABLED}
   Unregister;
-
+{$ENDIF}
 end.

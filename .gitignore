@@ -1,0 +1,9 @@
+*.dcu
+*.res
+*.exe
+*.dsk
+__history
+*.identcache
+*.local
+*.~dsk
+*.rtf

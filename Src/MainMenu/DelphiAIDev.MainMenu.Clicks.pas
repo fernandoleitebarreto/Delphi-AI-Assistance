@@ -33,7 +33,9 @@ uses
 
 class procedure TDelphiAIDevIDEMainMenuClicks.ChatClick(Sender: TObject);
 begin
+{$IFNDEF IGNORE_CODE_ENABLED}
   DelphiAIDev.Chat.View.DelphiAIDevChatViewShowDockableForm;
+{$ENDIF}
 end;
 
 class procedure TDelphiAIDevIDEMainMenuClicks.DefaultsQuestionsClick(Sender: TObject);
@@ -62,7 +64,9 @@ end;
 
 class procedure TDelphiAIDevIDEMainMenuClicks.DatabasesChatClick(Sender: TObject);
 begin
+{$IFNDEF IGNORE_CODE_ENABLED}
   DelphiAIDev.DB.Chat.View.DelphiAIDevDBChatViewShowDockableForm;
+{$ENDIF}
 end;
 
 class procedure TDelphiAIDevIDEMainMenuClicks.SettingsClick(Sender: TObject);

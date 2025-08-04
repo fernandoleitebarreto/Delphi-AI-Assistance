@@ -236,7 +236,7 @@ begin
   FListView := AListView;
   FInvertOrder := True;
   FColumnIndex := 0;
-  for i := 0 to Length(FSortOrder) do
+  for i := 0 to Length(FSortOrder)-1 do
     FSortOrder[i] := False;
 end;
 

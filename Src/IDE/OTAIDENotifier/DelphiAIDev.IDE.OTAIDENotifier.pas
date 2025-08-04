@@ -129,6 +129,6 @@ end;
 initialization
 
 finalization
-  if Index >= 0 then
+  if (Index >= 0) and (BorlandIDEServices <> nil) then
     (BorlandIDEServices as IOTAServices).RemoveNotifier(Index);
 end.

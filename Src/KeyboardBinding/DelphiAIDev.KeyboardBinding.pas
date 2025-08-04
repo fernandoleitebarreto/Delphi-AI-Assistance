@@ -153,8 +153,10 @@ begin
   if copy(LTextCurrentLineOrBlock, 1, 2) = '//' then
     LTextCurrentLineOrBlock := copy(LTextCurrentLineOrBlock, 3, LTextCurrentLineOrBlock.Length);
 
+{$IFNDEF IGNORE_CODE_ENABLED}
   DelphiAIDev.Chat.View.DelphiAIDevChatView.QuestionOnShow := LTextCurrentLineOrBlock;
   DelphiAIDev.Chat.View.DelphiAIDevChatViewShowDockableForm;
+{$ENDIF}
 
   BindingResult := TKeyBindingResult.krUnhandled;
 end;

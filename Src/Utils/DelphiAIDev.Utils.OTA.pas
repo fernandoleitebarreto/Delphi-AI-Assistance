@@ -521,6 +521,9 @@ begin
   AForm.Constraints.MinHeight := AForm.Height;
   AForm.Constraints.MinWidth := AForm.Width;
 
+  {$IFDEF IGNORE_CODE_ENABLED}
+    Exit;
+  {$ENDIF}
   {$IF CompilerVersion > 32.0}
   LIOTAIDEThemingServices250 := Self.GetIOTAIDEThemingServices250;
   LIOTAIDEThemingServices250.RegisterFormClass(AFormClass);
@@ -555,7 +558,10 @@ class function TUtilsOTA.ActiveThemeIsDark: Boolean;
 const
   THEME_DARK = 'dark';
 begin
-  {$IF CompilerVersion > 32.0} //Tokyo
+  {$IFDEF IGNORE_CODE_ENABLED}
+    Exit(True);
+  {$ENDIF}
+  {$IF CompilerVersion > 32.0}  //Tokyo
     Result := Self.GetIOTAIDEThemingServices.ActiveTheme.ToLower.Equals(THEME_DARK);
   {$ELSE}
     Result := False;
@@ -838,6 +844,9 @@ var
   LIOTAProject: IOTAProject;
 begin
   Result := '';
+  {$IFDEF IGNORE_CODE_ENABLED}
+    Exit('C:\DelphiERP\Delphi-AI-Assistance\DelphiAIDev.dproj');
+  {$ENDIF}
   LIOTAProject := Self.GetCurrentProject;
   if Assigned(LIOTAProject) then
     Result := LIOTAProject.FileName.Trim;

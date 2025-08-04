@@ -76,13 +76,14 @@ uses
   DelphiAIDev.CodeCompletion.KeyTab in 'Src\CodeCompletion\DelphiAIDev.CodeCompletion.KeyTab.pas',
   DelphiAIDev.AI.Response in 'Src\AI\DelphiAIDev.AI.Response.pas',
   DelphiAIDev.AI.Mistral in 'Src\AI\DelphiAIDev.AI.Mistral.pas',
-  DelphiAIDev.IDE.ImageListMain in 'Src\IDE\ImageListMain\DelphiAIDev.IDE.ImageListMain.pas';
+  DelphiAIDev.IDE.ImageListMain in 'Src\IDE\ImageListMain\DelphiAIDev.IDE.ImageListMain.pas',
+  DelphiAIDev.View.Main in 'Src\View\DelphiAIDev.View.Main.pas' {DelphiAIDevMainView};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TDelphiAIDevDBChatView, DelphiAIDevDBChatView);
+  Application.CreateForm(TDelphiAIDevMainView, DelphiAIDevMainView);
   Application.Run;
 end.
