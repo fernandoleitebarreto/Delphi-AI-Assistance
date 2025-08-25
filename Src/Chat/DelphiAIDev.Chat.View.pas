@@ -24,17 +24,17 @@ uses
   Vcl.Menus,
   Vcl.Buttons,
   Clipbrd,
-  DelphiAIDev.View.Main,
   DelphiAIDev.Types,
   DelphiAIDev.Consts,
   DelphiAIDev.AI.Facade,
   DelphiAIDev.Settings,
   DelphiAIDev.ModuleCreator,
   DelphiAIDev.DefaultsQuestions.PopupMenu,
-  DelphiAIDev.Chat.ProcessResponse;
+  DelphiAIDev.Chat.ProcessResponse,
+  DelphiAIDev.View.Base;
 
 type
-  TDelphiAIDevChatView = class(TDelphiAIDevMainView)
+  TDelphiAIDevChatView = class(TDelphiAIBaseView)
     ImageList1: TImageList;
     pMenuMemoReturn: TPopupMenu;
     Cut1: TMenuItem;
@@ -179,7 +179,6 @@ begin
     UnRegisterFieldAddress(@DelphiAIDevChatView);
   FreeAndNil(DelphiAIDevChatView);
 end;
-
 
 procedure DelphiAIDevChatViewShowDockableForm;
 begin

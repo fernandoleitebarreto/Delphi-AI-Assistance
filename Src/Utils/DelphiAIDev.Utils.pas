@@ -184,6 +184,9 @@ begin
     Result := TC4DDriverID.MySQL
   else if Value = TC4DDriverID.Firebird.ToString then
     Result := TC4DDriverID.Firebird
+  else if Value = TC4DDriverID.MSSQL.ToString then
+    Result := TC4DDriverID.MSSQL
+
 end;
 
 class procedure TUtils.DriverIDFillItemsTStrings(AStrings: TStrings);

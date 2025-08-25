@@ -28,6 +28,11 @@ uses
   //MySQL
   Firedac.Phys.MySQLDef,
   Firedac.Phys.MySQL,
+  //MSSQL
+  FireDAC.Phys.MSSQLCli,
+  FireDAC.Phys.MSSQLWrapper,
+  FireDAC.Phys.MSSQLDef,
+  FireDAC.Phys.MSSQL,
   C4D.Conn.Interfaces,
   C4D.Conn.Configs,
   DelphiAIDev.Types,
@@ -41,6 +46,7 @@ type
     FConnection: TFDConnection;
     FMySQLDriverLink: TFDPhysMySQLDriverLink;
     FFBDriverLink: TFDPhysFBDriverLink;
+    FMSSQLDriverLink: TFDPhysMSSQLDriverLink;
     function TestFieldsComponentConnection: IC4DConnection;
     procedure ConfigDrivers;
   protected
@@ -73,6 +79,7 @@ begin
 
   FMySQLDriverLink := TFDPhysMySQLDriverLink.Create(nil);
   FFBDriverLink := TFDPhysFBDriverLink.Create(nil);
+  FMSSQLDriverLink := TFDPhysMSSQLDriverLink.Create(nil);
 
   Self.LoadConnectionConfig;
 end;
@@ -81,6 +88,7 @@ destructor TC4DConnFiredac.Destroy;
 begin
   FFBDriverLink.Free;
   FMySQLDriverLink.Free;
+  FMSSQLDriverLink.Free;
 
   FConnection.Close;
   FreeAndNil(FConnection);
@@ -101,6 +109,13 @@ begin
   if FC4DConnConfigs.Port > 0 then
     FConnection.Params.Add('Port=' + FC4DConnConfigs.Port.ToString);
 
+  if FC4DConnConfigs.DriverID =  TC4DDriverID.MSSQL then
+    begin
+      FConnection.Params.Add('OSAuthent=Yes');
+      FConnection.Params.Add('Encrypt=No');
+      FConnection.Params.Add('TrustServerCertificate=Yes');
+    end;
+
 //  FConnection.TXOptions.AutoStart := True;
 //  FConnection.TXOptions.AutoStop := True;
 //  FConnection.TXOptions.AutoCommit := True;
@@ -115,12 +130,15 @@ procedure TC4DConnFiredac.ConfigDrivers;
 begin
   FMySQLDriverLink.VendorLib := '';
   FFBDriverLink.VendorLib := '';
+  FMSSQLDriverLink.VendorLib := '';
 
   case FC4DConnConfigs.DriverID of
     TC4DDriverID.MySQL:
       FMySQLDriverLink.VendorLib := FC4DConnConfigs.VendorLib;
     TC4DDriverID.Firebird:
       FFBDriverLink.VendorLib := FC4DConnConfigs.VendorLib;
+    TC4DDriverID.MSSQL:
+      FMSSQLDriverLink.VendorLib := FC4DConnConfigs.VendorLib;
   end;
 end;
 
@@ -187,14 +205,17 @@ begin
   if FC4DConnConfigs.Host.Trim.IsEmpty then
     LEmptyFields := LEmptyFields + 'Host. ';
 
-  if FC4DConnConfigs.UserName.Trim.IsEmpty then
-    LEmptyFields := LEmptyFields + 'UserName. ';
+  if FC4DConnConfigs.DriverID <> TC4DDriverID.MSSQL then
+  begin
+    if FC4DConnConfigs.UserName.Trim.IsEmpty then
+      LEmptyFields := LEmptyFields + 'UserName. ';
 
-  if FC4DConnConfigs.Password.Trim.IsEmpty then
-    LEmptyFields := LEmptyFields + 'Password. ';
+    if FC4DConnConfigs.Password.Trim.IsEmpty then
+      LEmptyFields := LEmptyFields + 'Password. ';
 
-  if FC4DConnConfigs.Database.Trim.IsEmpty then
-    LEmptyFields := LEmptyFields + 'Database.';
+    if FC4DConnConfigs.Database.Trim.IsEmpty then
+      LEmptyFields := LEmptyFields + 'Database.';      
+  end;
 
   if not LEmptyFields.Trim.IsEmpty then
     raise exception.Create('To connect to the database, the following data must be filled in: ' + LEmptyFields);

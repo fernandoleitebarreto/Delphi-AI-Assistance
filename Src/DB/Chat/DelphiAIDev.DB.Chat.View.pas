@@ -15,6 +15,7 @@ uses
   Vcl.Dialogs,
   System.ImageList,
   Vcl.ImgList,
+  DockForm,
   Vcl.StdCtrls,
   Vcl.ExtCtrls,
   Vcl.ComCtrls,
@@ -38,10 +39,12 @@ uses
   C4D.Conn,
   DelphiAIDev.Utils.DBGrids,
   DelphiAIDev.Projects.Model,
-  DelphiAIDev.DB.References.View, DelphiAIDev.View.Main;
+  DelphiAIDev.DB.References.View,
+  DelphiAIDev.View.Base;
 
 type
-  TDelphiAIDevDBChatView = class(TForm)
+
+  TDelphiAIDevDBChatView = class(TDelphiAIBaseView)
     ImageList1: TImageList;
     pMenuMemoReturn: TPopupMenu;
     Cut1: TMenuItem;
@@ -943,6 +946,8 @@ end;
 initialization
 
 finalization
-{$IFNDEF IGNORE_CODE_ENABLED}  Unregister; {$ENDIF}
+{$IFNDEF IGNORE_CODE_ENABLED}
+  Unregister;
+{$ENDIF}
 
 end.

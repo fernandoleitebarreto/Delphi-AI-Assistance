@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{3D8D258A-BF02-4A5D-B5FF-2E9FE021A225}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Package\DelphiAIDeveloper.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Package\DelphiAIDev.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DelphiAIDeveloper">
+        <MSBuild Projects="Package\DelphiAIDeveloper.dproj"/>
+    </Target>
+    <Target Name="DelphiAIDeveloper:Clean">
+        <MSBuild Projects="Package\DelphiAIDeveloper.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DelphiAIDeveloper:Make">
+        <MSBuild Projects="Package\DelphiAIDeveloper.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DelphiAIDev">
+        <MSBuild Projects="Package\DelphiAIDev.dproj"/>
+    </Target>
+    <Target Name="DelphiAIDev:Clean">
+        <MSBuild Projects="Package\DelphiAIDev.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DelphiAIDev:Make">
+        <MSBuild Projects="Package\DelphiAIDev.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DelphiAIDeveloper;DelphiAIDev"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DelphiAIDeveloper:Clean;DelphiAIDev:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DelphiAIDeveloper:Make;DelphiAIDev:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

@@ -10,7 +10,9 @@ uses
   DelphiAIDev.PopupMenuProjects,
   DelphiAIDev.IDE.OTAIDENotifier;
 
-{$IFNDEF IGNORE_CODE_ENABLED}procedure Register;{$ENDIF}
+{$IFNDEF IGNORE_CODE_ENABLED}
+procedure Register;
+{$ENDIF}
 
 implementation
 

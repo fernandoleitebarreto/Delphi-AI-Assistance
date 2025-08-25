@@ -152,11 +152,17 @@ begin
   if Trim(edtHost.Text).IsEmpty then
     TUtils.ShowMsgAndAbort('No informed Host', edtHost);
 
-  if Trim(edtUser.Text).IsEmpty then
-    TUtils.ShowMsgAndAbort('No informed User', edtUser);
+  if (TUtils.StrToDriverID(cBoxDriverID.Text) <> TC4DDriverID.MSSQL) then
+  begin
+    if (Trim(edtUser.Text).IsEmpty) then
+      TUtils.ShowMsgAndAbort('No informed User', edtUser);
 
-  if Trim(edtDatabase.Text).IsEmpty then
-    TUtils.ShowMsgAndAbort('No informed Database', edtDatabase);
+    if (Trim(edtPassword.Text).IsEmpty) then
+      TUtils.ShowMsgAndAbort('No informed Password', edtPassword);
+
+    if Trim(edtDatabase.Text).IsEmpty then
+      TUtils.ShowMsgAndAbort('No informed Database', edtDatabase);
+  end;
 end;
 
 procedure TDelphiAIDevDBRegistersAddEditView.edtPasswordViewClick(Sender: TObject);

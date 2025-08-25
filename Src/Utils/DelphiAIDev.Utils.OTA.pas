@@ -521,9 +521,7 @@ begin
   AForm.Constraints.MinHeight := AForm.Height;
   AForm.Constraints.MinWidth := AForm.Width;
 
-  {$IFDEF IGNORE_CODE_ENABLED}
-    Exit;
-  {$ENDIF}
+  {$IFDEF IGNORE_CODE_ENABLED}Exit;{$ENDIF}
   {$IF CompilerVersion > 32.0}
   LIOTAIDEThemingServices250 := Self.GetIOTAIDEThemingServices250;
   LIOTAIDEThemingServices250.RegisterFormClass(AFormClass);

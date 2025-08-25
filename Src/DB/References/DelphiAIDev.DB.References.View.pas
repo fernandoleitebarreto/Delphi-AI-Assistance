@@ -16,10 +16,11 @@ uses
   Vcl.ExtCtrls,
   DelphiAIDev.Types,
   DelphiAIDev.DB.Registers.Fields,
-  DelphiAIDev.MetaInfo;
+  DelphiAIDev.MetaInfo,
+  DelphiAIDev.View.Base;
 
 type
-  TDelphiAIDevDBReferencesView = class(TForm)
+  TDelphiAIDevDBReferencesView = class(TDelphiAIBaseView)
     Bevel2: TBevel;
     pnButtons: TPanel;
     btnGenerate: TButton;

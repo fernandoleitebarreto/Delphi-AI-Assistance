@@ -2,8 +2,8 @@ object DelphiAIDevMainView: TDelphiAIDevMainView
   Left = 0
   Top = 0
   Caption = 'Main'
-  ClientHeight = 421
-  ClientWidth = 624
+  ClientHeight = 187
+  ClientWidth = 455
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

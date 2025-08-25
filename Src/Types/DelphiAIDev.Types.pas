@@ -20,7 +20,7 @@ type
   TC4DButtons = (OK, OK_Cancel);
   TC4DBtnFocu = (OK, Cancel);
   TC4DQuestionKind = (None, ItemMenuNormal, MenuMasterOnly, Separators);
-  TC4DDriverID = (None, MySQL, Firebird, SQLServer);
+  TC4DDriverID = (None, MySQL, Firebird, MSSQL);
   TAutoFreeField = (Yes, No);
   TShowMsg = (Yes, No);
   {$SCOPEDENUMS OFF}
@@ -273,9 +273,8 @@ end;
 function TC4DDriverIDHelper.ToStringID: string;
 begin
   if Self = TC4DDriverID.Firebird then
-    Exit('FB');
-
-  Result := GetEnumName(TypeInfo(TC4DDriverID), Integer(Self));
+    Result := 'FB'
+  else Result := GetEnumName(TypeInfo(TC4DDriverID), Integer(Self));
 end;
 
 end.

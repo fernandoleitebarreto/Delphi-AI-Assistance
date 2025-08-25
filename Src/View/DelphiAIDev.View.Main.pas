@@ -46,9 +46,9 @@ uses
 
 procedure TDelphiAIDevMainView.mmAboutClick(Sender: TObject);
 var
-  LView: TDelphiAIDevDBRegistersView;
+  LView: TDelphiAIDevViewAbout;
 begin
-  LView := TDelphiAIDevDBRegistersView.Create(nil);
+  LView := TDelphiAIDevViewAbout.Create(nil);
   try
     LView.ShowModal;
   finally

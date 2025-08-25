@@ -45,13 +45,23 @@ end;
 
 constructor TDelphiAIDevIDEImageListMain.Create;
 begin
-  FImgIndexC4D_Logo := 0; //TUtilsOTA.AddImgIDEResourceName('c4d_logo');
-  FImgIndexGear := 0; //TUtilsOTA.AddImgIDEResourceName('c4d_gear');
-  FImgIndexMessage := 0; //TUtilsOTA.AddImgIDEResourceName('c4d_message');
-  FImgQuestion  := 0; //TUtilsOTA.AddImgIDEResourceName('c4d_question');
-  FImgDatabase  := 0; //TUtilsOTA.AddImgIDEResourceName('c4d_database');
-  FImgDatabaseAdd  := 0; //TUtilsOTA.AddImgIDEResourceName('c4d_database_add');
-  FImgDatabaseExecute  := 0; //TUtilsOTA.AddImgIDEResourceName('c4d_database_execute');
+{$IFDEF IGNORE_CODE_ENABLED}
+  FImgIndexC4D_Logo := 0;
+  FImgIndexGear := 0;
+  FImgIndexMessage := 0;
+  FImgQuestion  := 0;
+  FImgDatabase  := 0;
+  FImgDatabaseAdd := 0;
+  FImgDatabaseExecute := 0;
+{$ELSE}
+  FImgIndexC4D_Logo := TUtilsOTA.AddImgIDEResourceName('c4d_logo');
+  FImgIndexGear := TUtilsOTA.AddImgIDEResourceName('c4d_gear');
+  FImgIndexMessage := TUtilsOTA.AddImgIDEResourceName('c4d_message');
+  FImgQuestion  := TUtilsOTA.AddImgIDEResourceName('c4d_question');
+  FImgDatabase  := TUtilsOTA.AddImgIDEResourceName('c4d_database');
+  FImgDatabaseAdd  := TUtilsOTA.AddImgIDEResourceName('c4d_database_add');
+  FImgDatabaseExecute  := TUtilsOTA.AddImgIDEResourceName('c4d_database_execute');
+{$ENDIF}
 end;
 
 initialization
